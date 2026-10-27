@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Calculadora de Preços MOLDA</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Nunito+Sans:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#f6f0e6;--card:#fffdf9;--ink:#3a2e27;--mut:#85766a;--line:#e6dacb;--acc:#b8613f;--acc2:#f1dccd;--ok:#4f7a54;--bad:#b3261e;--badbg:#fbe4e1;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241c17;--card:#2f251f;--ink:#f3e9dd;--mut:#b5a595;--line:#47392f;--acc:#e08a65;--acc2:#4a3125;--ok:#8fc194;--bad:#ff9b92;--badbg:#4a2421}}
+:root[data-theme="dark"]{--bg:#241c17;--card:#2f251f;--ink:#f3e9dd;--mut:#b5a595;--line:#47392f;--acc:#e08a65;--acc2:#4a3125;--ok:#8fc194;--bad:#ff9b92;--badbg:#4a2421}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Nunito Sans",system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+h1{font:700 28px/1.15 Fraunces,Georgia,serif;margin:8px 0 4px}
+h2{font:700 19px/1.2 Fraunces,Georgia,serif;margin:0 0 4px}
+.sub{color:var(--mut);margin:0 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.hint{color:var(--mut);font-size:14px;margin:0 0 12px}
+label{display:block;font-size:14px;font-weight:600;margin:0 0 4px}
+input{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;min-height:46px}
+input:focus,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.mat{border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px;background:var(--bg)}
+.mat input{background:var(--card)}
+.mat .top{display:flex;gap:8px;align-items:end;margin-bottom:8px}
+.mat .top>div{flex:1}
+.mc{font-size:14px;color:var(--mut);margin-top:6px;text-align:right}
+.mc b{color:var(--ink)}
+button{font:inherit;font-weight:700;min-height:48px;border-radius:12px;border:0;padding:0 18px;cursor:pointer}
+.pri{background:var(--acc);color:#fff;width:100%}
+.sec{background:var(--acc2);color:var(--ink);width:100%}
+.ghost{background:transparent;color:var(--mut);border:1px solid var(--line);width:100%}
+.x{background:transparent;color:var(--mut);min-height:46px;width:46px;padding:0;border:1px solid var(--line);flex:none}
+.sub2{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--line)}
+.sub2:last-child{border:0}
+.res{border:2px solid var(--acc)}
+.big{font:700 40px/1.1 Fraunces,Georgia,serif;color:var(--acc);margin:4px 0 2px}
+.lbl{color:var(--mut);font-size:14px}
+.bar{display:flex;height:16px;border-radius:8px;overflow:hidden;margin:12px 0 6px;background:var(--line)}
+.bar i{display:block;height:100%}
+.leg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--mut)}
+.leg span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;background:var(--c)}
+.alert{background:var(--badbg);color:var(--bad);border-radius:10px;padding:10px 12px;font-weight:600;margin-top:12px;display:none}
+.alert.on{display:block}
+.good{color:var(--ok);font-weight:700}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.pair div{background:var(--bg);border-radius:12px;padding:10px 12px}
+.pair b{display:block;font-size:20px;font-family:Fraunces,Georgia,serif}
+.h{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.h:last-child{border:0}
+.h small{color:var(--mut);display:block}
+.btns{display:grid;gap:10px;margin-top:6px}
+.brand{font:700 15px Fraunces,Georgia,serif;color:var(--acc);letter-spacing:.04em;margin:4px 0 0}
+.foot{text-align:center;color:var(--mut);font-size:14px;margin-top:28px}
+#gate{max-width:420px;margin:12vh auto 0;padding:24px 20px;text-align:center}
+#gate h1{font:700 26px/1.2 Fraunces,Georgia,serif;margin:6px 0 8px}
+#gate p{color:var(--mut);margin:0 0 16px}
+#gate button{margin-top:10px}
+#gerr{color:var(--bad);font-weight:600;min-height:22px;margin-top:8px}
+body.locked main{display:none}
+body:not(.locked) #gate{display:none}
+</style>
+</head>
+<body>
+<script>document.body.classList.add('locked');</script>
+<div id="gate">
+<div class="brand">MOLDA atelier</div>
+<h1>Calculadora de Preços</h1>
+<p>Escreve o código de acesso que recebeste para abrir a calculadora.</p>
+<input id="code" type="text" autocomplete="off" autocapitalize="off" placeholder="Código de acesso" aria-label="Código de acesso">
+<button class="pri" id="entrar" type="button">Entrar</button>
+<div id="gerr" role="alert"></div>
+</div>
+<main>
+<div class="brand">MOLDA atelier</div>
+<h1>Quanto devo cobrar pela minha peça?</h1>
+<p class="sub">Preenche os campos e vê o preço certo, sem trabalhar de graça. Já está um exemplo preenchido: muda os valores para os teus.</p>
+
+<section>
+<label for="nome">Nome da peça</label>
+<input id="nome" value="Prato decorativo em gesso" autocomplete="off">
+</section>
+
+<section>
+<h2>Materiais</h2>
+<p class="hint">Para cada material: quanto pagaste pela embalagem, quanto vem nela e quanto gastas nesta peça (usa a mesma unidade).</p>
+<div id="mats"></div>
+<button class="sec" id="addMat" type="button">Adicionar material</button>
+</section>
+
+<section>
+<h2>Mão de obra</h2>
+<p class="hint">Conta tudo: preparação, moldagem, acompanhar a secagem, lixar, pintar, acabamentos e embalar.</p>
+<div class="g3">
+<div><label for="hora">Quero receber por hora (€)</label><input id="hora" type="number" inputmode="decimal" min="0" step="0.5" value="12"></div>
+<div><label for="hh">Horas</label><input id="hh" type="number" inputmode="numeric" min="0" step="1" value="1"></div>
+<div><label for="mm">Minutos</label><input id="mm" type="number" inputmode="numeric" min="0" max="59" step="5" value="30"></div>
+</div>
+</section>
+
+<section>
+<h2>Custos extra por peça</h2>
+<p class="hint">Embalagem, etiqueta, cartão de agradecimento, fita, saco…</p>
+<label for="extra">Total de extras (€)</label>
+<input id="extra" type="number" inputmode="decimal" min="0" step="0.1" value="1.50">
+</section>
+
+<section>
+<h2>Custos fixos</h2>
+<p class="hint">Despesas do mês que existem mesmo sem vender: eletricidade, espaço, ferramentas, internet, anúncios.</p>
+<div class="g2">
+<div><label for="fixo">Total por mês (€)</label><input id="fixo" type="number" inputmode="decimal" min="0" step="1" value="90"></div>
+<div><label for="npecas">Peças que faço por mês</label><input id="npecas" type="number" inputmode="numeric" min="1" step="1" value="30"></div>
+</div>
+</section>
+
+<section>
+<h2>Taxas e envio</h2>
+<div class="g2">
+<div><label for="taxa">Taxas de pagamento ou plataforma (%)</label><input id="taxa" type="number" inputmode="decimal" min="0" step="0.1" value="3"></div>
+<div><label for="envio">Envio que eu pago (€)</label><input id="envio" type="number" inputmode="decimal" min="0" step="0.1" value="3.50"></div>
+</div>
+</section>
+
+<section>
+<h2>Lucro e venda por grosso</h2>
+<div class="g2">
+<div><label for="marg">Margem de lucro (%)</label><input id="marg" type="number" inputmode="decimal" min="0" step="1" value="30"></div>
+<div><label for="desc">Desconto por grosso (%)</label><input id="desc" type="number" inputmode="decimal" min="0" max="90" step="1" value="15"></div>
+</div>
+<div style="margin-top:10px"><label for="atual">Preço a que vendo agora (opcional, €)</label>
+<input id="atual" type="number" inputmode="decimal" min="0" step="0.5" placeholder="Ex.: 15"></div>
+</section>
+
+<section class="res" aria-live="polite">
+<div class="lbl">Preço recomendado (venda direta)</div>
+<div class="big" id="rPreco">0,00 €</div>
+<div class="lbl" id="rLucro"></div>
+<div class="bar" id="bar"></div>
+<div class="leg" id="leg"></div>
+<div class="pair">
+<div><span class="lbl">Custo total da peça</span><b id="rCusto"></b></div>
+<div><span class="lbl">Preço mínimo (lucro zero)</span><b id="rMin"></b></div>
+<div><span class="lbl">Preço por grosso</span><b id="rGrosso"></b></div>
+<div><span class="lbl">Lucro por grosso</span><b id="rLG"></b></div>
+</div>
+<div class="alert" id="alerta"></div>
+<div id="detalhe" style="margin-top:14px"></div>
+</section>
+
+<div class="btns">
+<button class="pri" id="guardar" type="button">Guardar esta peça</button>
+<button class="ghost" id="limpar" type="button">Limpar tudo e começar de novo</button>
+</div>
+
+<section style="margin-top:20px">
+<h2>As minhas peças guardadas</h2>
+<div id="hist"><p class="hint">Ainda não guardaste nenhuma peça.</p></div>
+</section>
+<p class="foot">Feito com carinho pela MOLDA atelier · @molda.atelier</p>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const eur=n=>(isFinite(n)?n:0).toLocaleString('pt-PT',{style:'currency',currency:'EUR'});
+const num=id=>parseFloat(String($(id).value).replace(',','.'))||0;
+const EX=[["Gesso (kg)",8,5,0.4],["Molde de silicone (usos)",25,100,1],["Tinta (ml)",6,100,10],["Verniz (ml)",12,250,15]];
+
+function addMat(v){
+  const d=document.createElement('div');d.className='mat';
+  v=v||["",0,1,0];
+  d.innerHTML='<div class="top"><div><label>Material</label><input class="n" placeholder="Ex.: gesso" value="'+String(v[0]).replace(/"/g,'&quot;')+'"></div><button class="x" type="button" aria-label="Remover material">×</button></div>'+
+  '<div class="g3"><div><label>Custo da embalagem (€)</label><input class="c" type="number" inputmode="decimal" min="0" step="0.1" value="'+v[1]+'"></div>'+
+  '<div><label>Quantidade na embalagem</label><input class="q" type="number" inputmode="decimal" min="0" step="any" value="'+v[2]+'"></div>'+
+  '<div><label>Quantidade usada</label><input class="u" type="number" inputmode="decimal" min="0" step="any" value="'+v[3]+'"></div></div>'+
+  '<div class="mc">Custo nesta peça: <b>0,00 €</b></div>';
+  d.querySelector('.x').onclick=()=>{d.remove();calc()};
+  $('mats').appendChild(d);
+}
+function matTotal(){
+  let t=0;
+  document.querySelectorAll('.mat').forEach(m=>{
+    const f=c=>parseFloat(String(m.querySelector(c).value).replace(',','.'))||0;
+    const q=f('.q'),cost=q>0?f('.c')/q*f('.u'):0;
+    m.querySelector('.mc b').textContent=eur(cost);t+=cost;
+  });
+  return t;
+}
+let last={};
+function calc(){
+  const mat=matTotal();
+  const mao=num('hora')*(num('hh')+num('mm')/60);
+  const ext=num('extra');
+  const fixo=num('fixo')/Math.max(num('npecas'),1);
+  const custo=mat+mao+ext+fixo;
+  const taxa=Math.min(num('taxa'),90)/100,envio=num('envio'),marg=num('marg')/100,desc=Math.min(num('desc'),90)/100;
+  const minimo=(custo+envio)/(1-taxa);
+  const preco=(custo*(1+marg)+envio)/(1-taxa);
+  const lucro=preco*(1-taxa)-envio-custo;
+  const grosso=preco*(1-desc);
+  const lg=grosso*(1-taxa)-envio-custo;
+  $('rPreco').textContent=eur(preco);
+  $('rLucro').innerHTML='Lucro por peça: <b class="good">'+eur(lucro)+'</b>';
+  $('rCusto').textContent=eur(custo);$('rMin').textContent=eur(minimo);
+  $('rGrosso').textContent=eur(grosso);$('rLG').textContent=eur(lg);
+  $('rLG').style.color=lg<0?'var(--bad)':'';
+  const parts=[["Materiais",mat,'#b8613f'],["Mão de obra",mao,'#d9a27f'],["Extras",ext,'#8a9a7b'],["Custos fixos",fixo,'#c9b79c'],["Taxas e envio",preco*taxa+envio,'#7d6b5d'],["Lucro",Math.max(lucro,0),'#4f7a54']];
+  const tot=parts.reduce((s,p)=>s+p[1],0)||1;
+  $('bar').innerHTML=parts.map(p=>'<i style="width:'+(p[1]/tot*100)+'%;background:'+p[2]+'"></i>').join('');
+  $('leg').innerHTML=parts.map(p=>'<span style="--c:'+p[2]+'">'+p[0]+' '+eur(p[1])+'</span>').join('');
+  $('detalhe').innerHTML=parts.map(p=>'<div class="sub2"><span>'+p[0]+'</span><b>'+eur(p[1])+'</b></div>').join('');
+  const atual=num('atual'),al=$('alerta');
+  let msg='';
+  if(atual>0&&atual<custo)msg='Atenção: a '+eur(atual)+' vendes abaixo do custo ('+eur(custo)+'). Estás a pagar para vender.';
+  else if(atual>0&&atual<minimo)msg='Atenção: a '+eur(atual)+' não cobre as taxas e o envio. O mínimo é '+eur(minimo)+'.';
+  else if(lg<0)msg='Atenção: com este desconto, a venda por grosso dá prejuízo. Reduz o desconto ou sobe a margem.';
+  al.textContent=msg;al.classList.toggle('on',!!msg);
+  last={custo,minimo,preco,lucro,grosso};
+}
+function load(){try{return JSON.parse(localStorage.getItem('pecas')||'[]')}catch(e){return[]}}
+function save(a){try{localStorage.setItem('pecas',JSON.stringify(a))}catch(e){}}
+function hist(){
+  const a=load();
+  if(!a.length){$('hist').innerHTML='<p class="hint">Ainda não guardaste nenhuma peça.</p>';return}
+  $('hist').innerHTML=a.map((p,i)=>'<div class="h"><div><b></b><small>Custo '+eur(p.custo)+' · Mínimo '+eur(p.minimo)+'</small><small>Grosso '+eur(p.grosso)+' · Lucro '+eur(p.lucro)+'</small></div><div style="text-align:right"><b>'+eur(p.preco)+'</b><br><button class="x" type="button" data-i="'+i+'" aria-label="Apagar peça" style="min-height:36px;width:36px">×</button></div></div>').join('');
+  $('hist').querySelectorAll('.h').forEach((el,i)=>el.querySelector('b').textContent=a[i].nome);
+  $('hist').querySelectorAll('.x').forEach(b=>b.onclick=()=>{const l=load();l.splice(+b.dataset.i,1);save(l);hist()});
+}
+$('guardar').onclick=()=>{
+  calc();const l=load();
+  l.unshift(Object.assign({nome:$('nome').value.trim()||'Peça sem nome'},last));
+  save(l.slice(0,50));hist();
+  $('guardar').textContent='Peça guardada!';setTimeout(()=>$('guardar').textContent='Guardar esta peça',1500);
+};
+$('limpar').onclick=()=>{
+  $('mats').innerHTML='';addMat();
+  ['hora','hh','mm','extra','fixo','taxa','envio','marg','desc','atual'].forEach(i=>$(i).value='');
+  $('npecas').value=1;$('nome').value='';calc();
+};
+$('addMat').onclick=()=>{addMat();calc()};
+document.addEventListener('input',calc);
+EX.forEach(addMat);calc();hist();
+</script>
+<script>
+(function(){
+var H=1433803366843131;
+function h(t){var M=4294967295,a=3735928559,b=1103547991,i,c;for(i=0;i<t.length;i++){c=t.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677);}
+a=Math.imul(a^(a>>>16),2246822507)^Math.imul(b^(b>>>13),3266489909);b=Math.imul(b^(b>>>16),2246822507)^Math.imul(a^(a>>>13),3266489909);return 4294967296*(2097151&b)+(a>>>0);}
+function open(){document.body.classList.remove('locked');}
+try{if(localStorage.getItem('molda_ok')==String(H))open();}catch(e){}
+function go(){var v=document.getElementById('code').value.trim().toLowerCase();
+if(h(v)==H){try{localStorage.setItem('molda_ok',String(H));}catch(e){}open();}
+else{document.getElementById('gerr').textContent='Código incorreto. Confirma a mensagem que recebeste.';}}
+document.getElementById('entrar').onclick=go;
+document.getElementById('code').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+})();
+</script>
+</body>
+</html>
